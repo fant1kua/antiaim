@@ -78,7 +78,7 @@ mutil_funcs_t *gpMetaUtilFuncs;         // metamod utility functions
 //  ifvers                      (given) interface_version metamod is using
 //  pPlugInfo           (requested) struct with info about plugin
 //  pMetaUtilFuncs      (given) table of utility functions provided by metamod
-C_DLLEXPORT int Meta_Query(char * ifvers , plugin_info_t **pPlugInfo,
+C_DLLEXPORT int Meta_Query(const char * ifvers , plugin_info_t **pPlugInfo,
                            mutil_funcs_t *pMetaUtilFuncs) 
 {
     // Give metamod our plugin_info struct
@@ -95,7 +95,7 @@ void ServerCommand_Record()
 {
     char arg1[512];
 
-    snprintf(arg1, 512, CMD_ARGV(2));
+    snprintf(arg1, 512, "%s", CMD_ARGV(2));
 
     if (arg1[0] == 0) {
         UTIL_LogPrintf("Usage: %s %s <file>\n", CMD_ARGV(0), CMD_ARGV(1));
@@ -127,7 +127,7 @@ void ServerCommand_Show()
 {
     char arg1[512];
 
-    snprintf(arg1, 512, CMD_ARGV(2));
+    snprintf(arg1, 512, "%s", CMD_ARGV(2));
 
     if (arg1[0] == 0) {
         UTIL_LogPrintf("Usage: %s %s <player name>\n", CMD_ARGV(0), CMD_ARGV(1));
@@ -141,7 +141,7 @@ void ServerCommand_Load()
 {
     char arg1[512];
 
-    snprintf(arg1, 512, CMD_ARGV(2));
+    snprintf(arg1, 512, "%s", CMD_ARGV(2));
 
     if (arg1[0] == 0) {
         UTIL_LogPrintf("Usage: %s %s <file>\n", CMD_ARGV(0), CMD_ARGV(1));
@@ -179,7 +179,7 @@ void ServerCommand_aa()
         return;
     }
 
-    snprintf(cmd, 128, CMD_ARGV(1));
+    snprintf(cmd, 128, "%s", CMD_ARGV(1));
 
     if (strcmp(cmd, "record") == 0)
         ServerCommand_Record();
